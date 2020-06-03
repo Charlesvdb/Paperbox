@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import axios from "axios";
+import {Link} from "react-router-dom"
 
 class Home extends PureComponent {
     constructor(props) {
@@ -32,7 +33,7 @@ class Home extends PureComponent {
             url: "https://swapi.dev/api/planets/"
         })
         .then(response => {
-            console.log(response)
+            console.log(response.data.results)
             let planetslist = response.data.results;
             this.setState({planets: planetslist, filteredPlanets: planetslist})
         })
@@ -53,7 +54,7 @@ class Home extends PureComponent {
          
             {
                 this.state.filteredPlanets.map((planet,i) => (
-                        <p key={i}>{planet.name}</p>
+                    <Link to={{ pathname: "/info", state:{planet:planet} }}><p key={i}>{planet.name}</p></Link>
                 ))   
             }
 
