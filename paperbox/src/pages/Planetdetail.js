@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import axios from "axios";
+import Resident from "../components/Resident"
 
 class PlanetDetail extends PureComponent {
     constructor(props) {
@@ -33,7 +34,7 @@ class PlanetDetail extends PureComponent {
           isGettingPlanetInfo: false
         });
         console.log(
-          "You've made an error with the planets load charles: ",error
+          "You've made an error with the planet detail load charles: ",error
         );
       });
   };
@@ -50,35 +51,39 @@ class PlanetDetail extends PureComponent {
   render() {
     return (
       <div>
-        
-        {this.state.isGettingPlanetInfo ? (
-          <p>getting planet info...</p>
-        ) : typeof this.state.planetInfo === "object" &&
-          Object.keys(this.state.planetInfo).length ? (
-          <div>
+            <div>
+            {this.state.isGettingPlanetInfo ? 
+            (<p>Getting planet info...</p>) :
+            typeof this.state.planetInfo === "object" && Object.keys(this.state.planetInfo).length ? 
+            (  
+            <div>
+                <h1>Planet details</h1>
+                <p>planet name: {this.state.planetInfo.name}</p>
+                <p>rotation period: {this.state.planetInfo.rotation_period}</p>
+                <p>orbital period: {this.state.planetInfo.orbital_period}</p>
+                <p>diameter: {this.state.planetInfo.diameter}</p>
+                <p>climate: {this.state.planetInfo.climate}</p>
+                <p>gravity: {this.state.planetInfo.gravity}</p>
+                <p>terrain: {this.state.planetInfo.terrain}</p>
+                <p>surface water: {this.state.planetInfo.surface_water}</p>
+                <p>population: {this.state.planetInfo.population}</p>
+            </div>
+            ) : (
+            ""
+            )}
+        </div>
+        <div>
 
-            <h1>Planet details</h1>
-            <p>planet name: {this.state.planetInfo.name}</p>
-            <p>rotation period: {this.state.planetInfo.rotation_period}</p>
-            <p>orbital period: {this.state.planetInfo.orbital_period}</p>
-            <p>diameter: {this.state.planetInfo.diameter}</p>
-            <p>climate: {this.state.planetInfo.climate}</p>
-            <p>gravity: {this.state.planetInfo.gravity}</p>
-            <p>terrain: {this.state.planetInfo.terrain}</p>
-            <p>surface water: {this.state.planetInfo.surface_water}</p>
-            <p>population: {this.state.planetInfo.population}</p>
-            
-            <h1>Notable people</h1>
-            <p>famous inhabitants: {this.state.planetInfo.residents}</p>
-          </div>
-        ) : (
-          ""
-        )}
+            <h1>Notable people</h1>;
+            {
+            this.state.planetInfo.residents.map((url) => (<Resident url={url} />))
+            }
+            }
 
+        </div>
       </div>
     );
   }
 }
-
 
 export default PlanetDetail
