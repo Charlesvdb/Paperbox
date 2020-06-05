@@ -75,6 +75,7 @@ class PlanetDetail extends PureComponent {
         <div>
 
             <h1>Notable people</h1>;
+            <p>Didn't manage to debug code to list all names</p>
             {/* {
             this.state.planetInfo.residents.map((url) => (<Resident url={url} />))
             }
