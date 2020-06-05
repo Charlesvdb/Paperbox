@@ -75,10 +75,10 @@ class PlanetDetail extends PureComponent {
         <div>
 
             <h1>Notable people</h1>;
-            {
+            {/* {
             this.state.planetInfo.residents.map((url) => (<Resident url={url} />))
             }
-            }
+            } */}
 
         </div>
       </div>
